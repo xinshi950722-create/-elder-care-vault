@@ -1,26 +1,37 @@
-# GitHub 备份步骤卡（网页拖上传版）
+# GitHub 同步步骤卡（git push 版）
 
-> 目标：把 `养老转行` vault 备份到 GitHub 私有仓库。走网页拖上传，零门槛、可持续，不碰命令行、不配 git 远端。
+> 目标：让 `养老转行` vault 通过 git 与 GitHub 私有仓 `elder-care-vault` 持续同步。改自网页拖上传版，因用户需要"持续更新"。
 
 ## 状态（2026-07-23 更新）
-- ✅ 网页备份已完成：私有仓 `elder-care-vault` 含 vault 全部文件
-- ✅ 本地 git 仅作私人快照，`origin` 远端已移除（不推远端）
-- 决策：备份走网页拖上传，适合转行期，少一个要维护的东西
+- ✅ 本地 git 已接 `origin`：https://github.com/xinshi950722-create/elder-care-vault.git
+- ✅ 今天新笔记/PPT 已提交本地（`20f0bb2`），工作区干净
+- ⏳ 首次推送待你本机授权（沙箱无 GitHub 凭据，强推需你登录）
+- 历史分裂：GitHub 上有一次网页上传的孤立提交，首次需 `--force-with-lease` 覆盖，内容不丢
 
-## 备份步骤（每周一次，已验证可行）
-1. github.com → 右上 `+` → `New repository` → 名 `elder-care-vault` → 选 `Private` → 三个初始化框都不勾 → `Create repository`
-2. 进空仓库页，把**养老转行文件夹内的内容**拖进虚线框：
-   - 拖「内容」不拖「外层文件夹」，避免 GitHub 多套一层 `养老转行/`
-   - 也避开把本地 `.git` 传上去（保持仓库干净）
-   - 内容 = `01养老行业` `02证书备考` `03转行日志` `04素材库` `.obsidian` `.gitignore` 及各 README
-3. 底部 `Commit changes` 写一句（如「养老转行 vault 周备份」）→ `Commit main`
-4. 验证：网页能看到那 4 个文件夹即成功
+## 首次推送（在你自己电脑的终端跑，非 WorkBuddy 对话框）
+1. 打开 PowerShell / Git Bash / 终端（能访问你 GitHub 登录凭据的环境）
+2. 进入 vault 目录：
+   ```
+   cd "D:\workbuddy work\2026-07-20-09-10-29\养老转行"
+   ```
+3. 首次强推（会弹 GitHub 登录，登录即成功）：
+   ```
+   git push -u origin main --force-with-lease
+   ```
+4. 验证：github.com 打开 `elder-care-vault`，能看到泰康/万科笔记、两份 PPT 即成功
 
-## 日常节奏
-- 频率：每周一次网页拖上传（内容增量不大时）；有大改动可随时补传
-- 本地 `.git` 仅私人快照，不推远端；想彻底清掉避免上传污染，可删 `.git` 文件夹（vault 内容不受影响）
+## 日常同步（之后每次本地改完，一行命令）
+```
+git add -A && git commit -m "一句话说明本次更新" && git push
+```
+例：`git add -A && git commit -m "补充钱江运营岗调研" && git push`
+
+## 注意事项
+- 强推只首次需要；之后都是普通 `git push`
+- 若弹出凭据失败：确认 GitHub Desktop 已登录，或在终端跑 `git config --global credential.helper manager`（Windows 凭据管理器）
+- `.gitignore` 已排除：`.obsidian/workspace.json`、`graph.json`、Office 锁文件 `~$*`、`.trash/`，避免本地状态污染仓库
+- CRLF 警告无害（Windows 行尾归一化）
 
 ## 辩证提醒
-- 网页上传会丢本地 git 提交历史，但内容 100% 在，备份目的达成
-- 备份是手段不是学习，别在「哪种方式更好」上反复横跳，选定就跑
-- 关联：[[2026-07-23]]（今日选定网页备份）、[[养老管理岗位入门大纲]]
+- 工具是杠杆不是目的。每天 `git push` 一行是习惯，别为"同步方式"反复横跳
+- 关联：[[2026-07-23]]（今日切 git push）、[[养老管理岗位入门大纲]]
