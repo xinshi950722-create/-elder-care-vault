@@ -1,0 +1,36 @@
+{
+  "enabledCorePlugins": [
+    "bookmarks",
+    "command-palette",
+    "file-explorer",
+    "global-search",
+    "graph",
+    "outline",
+    "page-preview",
+    "switcher",
+    "tag-pane",
+    "backlink",
+    "canvas",
+    "daily-notes",
+    "templates",
+    "word-count",
+    "markdown-importer",
+    "zombies"
+  ],
+  "alwaysUpdateLinks": true,
+  "useMarkdownLinks": false,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "03转行日志",
+  "templates": {
+    "folder": "04素材库/_templates",
+    "dateFormat": "YYYY-MM-DD",
+    "timeFormat": "HH:mm",
+    "template": "daily"
+  },
+  "daily-notes": {
+    "format": "YYYY-MM-DD",
+    "folder": "03转行日志",
+    "template": "daily"
+  },
+  "attachmentFolderPath": "attam"
+}
