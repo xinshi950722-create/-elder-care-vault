@@ -1,37 +1,49 @@
 # GitHub 同步步骤卡（git push 版）
 
-> 目标：让 `养老转行` vault 通过 git 与 GitHub 私有仓 `elder-care-vault` 持续同步。改自网页拖上传版，因用户需要"持续更新"。
+> 让 `养老转行` vault 通过 git 与 GitHub 仓 `-elder-care-vault` 持续同步。改自网页拖上传版，因你需要"持续更新"。
 
-## 状态（2026-07-23 更新）
-- ✅ 本地 git 已接 `origin`：https://github.com/xinshi950722-create/elder-care-vault.git
-- ✅ 今天新笔记/PPT 已提交本地（`20f0bb2`），工作区干净
-- ⏳ 首次推送待你本机授权（沙箱无 GitHub 凭据，强推需你登录）
-- 历史分裂：GitHub 上有一次网页上传的孤立提交，首次需 `--force-with-lease` 覆盖，内容不丢
+## 状态（2026-07-23 已跑通）
+- ✅ origin 已接：`https://github.com/xinshi950722-create/-elder-care-vault.git`
+- ✅ 首次强推完成（本地 `abd95d8` 覆盖远端），`main` 已跟踪 `origin/main`
+- ✅ 之后日常普通 `git push` 即可，无需再强推
+- ⚠️ 仓库名带前导横杠 `-elder-care-vault`（建仓时多打了一个 `-`），暂不改
 
-## 首次推送（在你自己电脑的终端跑，非 WorkBuddy 对话框）
-1. 打开 PowerShell / Git Bash / 终端（能访问你 GitHub 登录凭据的环境）
-2. 进入 vault 目录：
-   ```
-   cd "D:\workbuddy work\2026-07-20-09-10-29\养老转行"
-   ```
-3. 首次强推（会弹 GitHub 登录，登录即成功）：
-   ```
-   git push -u origin main --force-with-lease
-   ```
-4. 验证：github.com 打开 `elder-care-vault`，能看到泰康/万科笔记、两份 PPT 即成功
+## 日常备份（每天在 Obsidian 写完笔记后）
+打开 PowerShell，先 `cd` 进 vault 目录，然后**一行一行**敲下面三行。
+注意：用回车分行执行，不要用 `&&` 串起来，PowerShell 5.1 不支持 `&&`。
 
-## 日常同步（之后每次本地改完，一行命令）
+**第 1 步 · 暂存所有改动**
 ```
-git add -A && git commit -m "一句话说明本次更新" && git push
+git add -A
 ```
-例：`git add -A && git commit -m "补充钱江运营岗调研" && git push`
+
+**第 2 步 · 提交并写摘要**（把引号里换成当天日期 + 你做了啥）
+```
+git commit -m "2026-07-23 补充日常备份步骤卡"
+```
+
+**第 3 步 · 推送到 GitHub**
+```
+git push
+```
+
+**验证成功**：看到 `main -> main` 这类提示、且没有 `error` / `fatal` 字样，即同步成功。去 github.com 刷新仓库能看到刚加的文件。
+
+## 首次推送（已完成，留作备查）
+1. 进 vault 目录：`cd "D:\workbuddy work\2026-07-20-09-10-29\养老转行"`
+2. 首次强推：`git push -u origin main --force-with-lease`（弹浏览器登录，登录即过）
+3. 成功输出示例：`+ ff9c3f6...abd95d8 main -> main (forced update)`
+
+## 踩过的坑（速查，避免重蹈）
+- **连不上 / Connection reset**：别手动给 git 加 `127.0.0.1` 代理，Astrill 是全隧道模式，直连即可。
+- **要密码却失败**：GitHub 早不支持账号密码，HTTPS 推送必须用 Personal Access Token（PAT，形如 `ghp_xxxx`）。
+- **Repository not found**：仓库真名是 `-elder-care-vault`（带前导横杠），`origin` 写错成 `elder-care-vault` 就会找不到。
+- **`&&` 不是有效语句分隔符**：PowerShell 5.1 不支持 `&&`，命令必须分行跑。
 
 ## 注意事项
-- 强推只首次需要；之后都是普通 `git push`
-- 若弹出凭据失败：确认 GitHub Desktop 已登录，或在终端跑 `git config --global credential.helper manager`（Windows 凭据管理器）
-- `.gitignore` 已排除：`.obsidian/workspace.json`、`graph.json`、Office 锁文件 `~$*`、`.trash/`，避免本地状态污染仓库
-- CRLF 警告无害（Windows 行尾归一化）
+- `.gitignore` 已排除：`.obsidian/workspace.json`、`graph.json`、Office 锁文件 `~$*`、`.trash/`，避免本地状态污染仓库。
+- CRLF 行尾警告无害（Windows 行尾归一化）。
+- 工具是杠杆不是目的，每天三行是习惯，别为"同步方式"反复横跳。
 
-## 辩证提醒
-- 工具是杠杆不是目的。每天 `git push` 一行是习惯，别为"同步方式"反复横跳
-- 关联：[[2026-07-23]]（今日切 git push）、[[养老管理岗位入门大纲]]
+## 关联
+[[2026-07-23]] [[养老管理岗位入门大纲]] [[WorkBuddy四段式提问法]]
