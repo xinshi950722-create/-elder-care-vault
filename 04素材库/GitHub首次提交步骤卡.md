@@ -1,29 +1,26 @@
-# 周四 GitHub 首次提交步骤卡（极简）
+# GitHub 备份步骤卡（网页拖上传版）
 
-> 目标：把 `养老转行` 整个 vault 推到 GitHub 私有仓库，完成第一次备份。用 GitHub Desktop，不碰命令行。
+> 目标：把 `养老转行` vault 备份到 GitHub 私有仓库。走网页拖上传，零门槛、可持续，不碰命令行、不配 git 远端。
 
 ## 状态（2026-07-23 更新）
-- ✅ 本地提交已完成（WorkBuddy 代执行）：commit `e43aea1`，分支 `main`，29 个文件，工作区干净
-- ⬜ 远端推送待你本人完成（需登录你的 GitHub 账号授权，AI 无法代操作）
+- ✅ 网页备份已完成：私有仓 `elder-care-vault` 含 vault 全部文件
+- ✅ 本地 git 仅作私人快照，`origin` 远端已移除（不推远端）
+- 决策：备份走网页拖上传，适合转行期，少一个要维护的东西
 
-## 准备（你已具备）
-- 注册 / 登录 GitHub（github.com）
-- 安装 GitHub Desktop（desktop.github.com）
+## 备份步骤（每周一次，已验证可行）
+1. github.com → 右上 `+` → `New repository` → 名 `elder-care-vault` → 选 `Private` → 三个初始化框都不勾 → `Create repository`
+2. 进空仓库页，把**养老转行文件夹内的内容**拖进虚线框：
+   - 拖「内容」不拖「外层文件夹」，避免 GitHub 多套一层 `养老转行/`
+   - 也避开把本地 `.git` 传上去（保持仓库干净）
+   - 内容 = `01养老行业` `02证书备考` `03转行日志` `04素材库` `.obsidian` `.gitignore` 及各 README
+3. 底部 `Commit changes` 写一句（如「养老转行 vault 周备份」）→ `Commit main`
+4. 验证：网页能看到那 4 个文件夹即成功
 
-## 步骤（GitHub Desktop，只差这最后一步）
-1. 打开 GitHub Desktop → `File` → `Add local repository` → 选 `养老转行` 文件夹
-   - 重要：文件夹已是 Git 仓库，**不要再点 Initialize**，否则会冲突
-2. 右上角出现 `Publish repository` → 仓库名填 `elder-care-vault` → 勾选 `Private`（私有）→ `Publish`
-   - 这一步首次即完成「建远程仓 + 推送」，可能需要输入一次 GitHub 密码/授权
-3. 验证：网页打开 github.com 你的账号，能看到 `elder-care-vault` 且含全部文件即成功
-4. 之后每天改动后：看 `Changes` → 底部 `Summary` 写一句 → `Commit to main` → `Push origin`
-
-## 验收标准
-- 远程仓库含 `养老转行` 全部文件
-- 此后养成"每天一 commit 一 push"
+## 日常节奏
+- 频率：每周一次网页拖上传（内容增量不大时）；有大改动可随时补传
+- 本地 `.git` 仅私人快照，不推远端；想彻底清掉避免上传污染，可删 `.git` 文件夹（vault 内容不受影响）
 
 ## 辩证提醒
-- Desktop 比命令行稳，别为学 Git 命令分心，那是另一条学习线
-- 私有仓库免费，内容不外泄
-- 版本回溯等真需要时再说，先用"每天一推"把习惯跑起来
-- 关联：[[周一下午计划]]（首次提交原计划在周四）、[[2026-07-20]]（今日日记提及待提交）
+- 网页上传会丢本地 git 提交历史，但内容 100% 在，备份目的达成
+- 备份是手段不是学习，别在「哪种方式更好」上反复横跳，选定就跑
+- 关联：[[2026-07-23]]（今日选定网页备份）、[[养老管理岗位入门大纲]]
