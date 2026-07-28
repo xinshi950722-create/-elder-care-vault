@@ -32,5 +32,6 @@
     "folder": "03转行日志",
     "template": "daily"
   },
-  "attachmentFolderPath": "attam"
+  "attachmentFolderPath": "attam",
+  "promptDelete": false
 }
